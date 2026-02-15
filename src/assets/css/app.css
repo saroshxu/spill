@@ -1,0 +1,130 @@
+body {
+	position: absolute;
+	height: 100vh;
+	width: 100vw;
+	overflow: hidden;
+	background-color: var(--primary);
+}
+.backlight {
+	position: absolute;
+	z-index: 998;
+	display: flex;
+	flex-direction: column;
+	height: 100vh;
+	width: 100vw;
+	overflow: hidden;
+}
+.backlight .light {
+	opacity: 50%;
+	border-radius: 500px;
+}
+.backlight .light-1 {
+	height: 200px;
+	width: 200px;
+	background-color: #ed2828;
+	position: relative;
+	top: 50px;
+	left: -80px;
+}
+.backlight .light-2 {
+	height: 80px;
+	width: 80px;
+	background-color: #ed2828;
+	position: relative;
+	top: 120px;
+	left: 80vw;
+}
+.backlight .light-3 {
+	height: 300px;
+	width: 300px;
+	background-color: #ed2828;
+	position: relative;
+	top: 300px;
+	left: -40px;
+	opacity: 30%;
+}
+.glass {
+	position: absolute;
+	z-index: 999;
+	height: 100vh;
+	width: 100vw;
+	backdrop-filter: blur(80px);
+	-webkit-backdrop-filter: blur(80px);
+}
+.menu {
+	position: absolute;
+	overflow: hidden;
+	z-index: 1000;
+	height: 100vh;
+	width: 100vw;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+.curve-cont {
+	height: 100vh;
+	width: 100vw;
+	position: absolute;
+	z-index: 1000;
+	overflow: hidden;
+	display: flex;
+	align-items: center;
+	justify-content: right;
+	padding-right: 40px;
+}
+.curve {
+	height: 100vh;
+	width: auto;
+	filter: invert(1);
+	opacity: 5%;
+}
+.app-logo-bar {
+	height: 128px;
+	width: 100vw;
+	padding-left: 40px;
+	padding-right: 40px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.app-logo-bar .app-logo {
+	height: 100%;
+	width: auto;
+}
+.app-name {
+	font-size: 48px;
+	font-weight: 400;
+	color: var(--secondary);
+	font-family: "Sacramento";
+}
+.start-game-btn {
+	margin-top: 80px;
+}
+.settings-game-btn {
+	margin-top: 8px;
+}
+.icons-bar {
+	margin-top: 80px;
+	height: 32px;
+	width: 100vw;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 18px;
+}
+.menu-ico {
+	height: 32px;
+	width: 32px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	transition: 0.1s all;
+}
+.menu-ico:active {
+	scale: 0.93;
+}
+.menu-ico i {
+	font-size: 32px;
+	color: var(--secondary);
+}

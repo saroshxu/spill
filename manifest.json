@@ -1,0 +1,23 @@
+{
+	"name": "Spill",
+	"short_name": "Spill",
+	"description": "Private online game, made by @saroshxu..",
+	"start_url": "/spill/app.html",
+	"scope": "/spill/",
+	"display": "standalone",
+	"orientation": "portrait",
+	"background_color": "#0d0d0d",
+	"theme_color": "#0d0d0d",
+	"icons": [
+		{
+			"src": "/spill/src/assets/imgs/app/app_192.png",
+			"sizes": "192x192",
+			"type": "image/png"
+		},
+		{
+			"src": "/spill/src/assets/imgs/app/app_500.png",
+			"sizes": "512x512",
+			"type": "image/png"
+		}
+	]
+}

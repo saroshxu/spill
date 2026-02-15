@@ -1,0 +1,35 @@
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+	-webkit-tap-highlight-color: transparent;
+}
+span {
+	font-family: "Poppins";
+}
+h1 {
+	font-family: "Poppins";
+}
+button {
+	height: 48px;
+	width: fit-content;
+	min-width: 200px;
+	border: none;
+	outline: none;
+	transition: 0.1s all;
+	font-family: "Poppins";
+	border-radius: 500px;
+}
+button.primary-btn {
+	background-color: var(--secondary);
+	color: var(--primary);
+	font-weight: 500;
+}
+button.secondary-btn {
+	background-color: var(--primary);
+	color: var(--secondary);
+	font-weight: 400;
+}
+button:active {
+	scale: 0.93;
+}

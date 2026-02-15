@@ -1,0 +1,35 @@
+body {
+	height: 100vh;
+	width: 100vw;
+	overflow: hidden;
+	background-color: var(--primary);
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+.app-logo {
+	height: 128px;
+	width: 128px;
+}
+.app-name {
+	font-size: 48px;
+	font-weight: 400;
+	color: var(--secondary);
+	font-family: "Sacramento";
+}
+.app-c {
+	position: absolute;
+	margin-top: 80vh;
+	font-size: 10px;
+	font-weight: 200;
+	color: var(--secondary);
+	opacity: 60%;
+	max-width: 80vw;
+	text-align: center;
+	line-height: 12px;
+}
+.app-install-btn {
+	margin-top: 48px;
+	display: none;
+}
