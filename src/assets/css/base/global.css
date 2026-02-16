@@ -3,6 +3,7 @@
 	margin: 0;
 	box-sizing: border-box;
 	-webkit-tap-highlight-color: transparent;
+	user-select: none;
 }
 span {
 	font-family: "Poppins";
@@ -32,4 +33,7 @@ button.secondary-btn {
 }
 button:active {
 	scale: 0.93;
+}
+img {
+	pointer-events: none;
 }

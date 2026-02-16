@@ -17,11 +17,11 @@ body {
 .backlight .light {
 	opacity: 50%;
 	border-radius: 500px;
+	transition: 0.3s all;
 }
 .backlight .light-1 {
 	height: 200px;
 	width: 200px;
-	background-color: #ed2828;
 	position: relative;
 	top: 50px;
 	left: -80px;
@@ -29,7 +29,6 @@ body {
 .backlight .light-2 {
 	height: 80px;
 	width: 80px;
-	background-color: #ed2828;
 	position: relative;
 	top: 120px;
 	left: 80vw;
@@ -37,7 +36,6 @@ body {
 .backlight .light-3 {
 	height: 300px;
 	width: 300px;
-	background-color: #ed2828;
 	position: relative;
 	top: 300px;
 	left: -40px;
@@ -52,6 +50,17 @@ body {
 	-webkit-backdrop-filter: blur(80px);
 }
 .menu {
+	position: absolute;
+	overflow: hidden;
+	z-index: 1000;
+	height: 100vh;
+	width: 100vw;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+.game {
 	position: absolute;
 	overflow: hidden;
 	z-index: 1000;
@@ -78,6 +87,7 @@ body {
 	width: auto;
 	filter: invert(1);
 	opacity: 5%;
+	pointer-events: none;
 }
 .app-logo-bar {
 	height: 128px;
@@ -106,7 +116,7 @@ body {
 }
 .icons-bar {
 	margin-top: 80px;
-	height: 32px;
+	height: 28px;
 	width: 100vw;
 	display: flex;
 	align-items: center;
@@ -114,8 +124,8 @@ body {
 	gap: 18px;
 }
 .menu-ico {
-	height: 32px;
-	width: 32px;
+	height: 28px;
+	width: 28px;
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -125,6 +135,235 @@ body {
 	scale: 0.93;
 }
 .menu-ico i {
-	font-size: 32px;
+	font-size: 28px;
+	color: var(--secondary);
+}
+.game-opts {
+	position: absolute;
+	z-index: 1000;
+	width: 100vw;
+	top: 60px;
+	bottom: 60px;
+	left: 0;
+	right: 0;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	overflow-y: auto;
+}
+.n-players-row {
+	height: 42px;
+	width: 100vw;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 6px;
+}
+.n-players-row-1 {
+	margin-top: 22px;
+}
+.n-players-row-2 {
+	margin-top: 6px;
+}
+.n-players-box {
+	height: 42px;
+	width: 42px;
+	border-radius: 38%;
+	background-color: var(--primary);
+	font-size: 14px;
+	font-family: "Poppins", sans-serif;
+	color: var(--secondary);
+	font-weight: 400;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border: 1px solid rgba(255, 255, 255, 0.05);
+}
+.n-player-txt {
+	font-size: 20px;
+	color: var(--secondary);
+	font-weight: 400;
+}
+.player-name-inputs-cont {
+	margin-top: 22px;
+	height: fit-content;
+	width: fit-content;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+.player-name-input-bar {
+	margin-top: 8px;
+	height: 42px;
+	width: fit-content;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.player-name-input-bar input {
+	height: 100%;
+	width: 180px;
+	border: 1px solid rgba(255, 255, 255, 0.05);
+	outline: none;
+	background-color: var(--primary);
+	color: var(--secondary);
+	font-family: "Poppins", sans-serif;
+	border-radius: 16px;
+	padding-left: 16px;
+	padding-right: 16px;
+}
+.player-name-input-bar .color-picker {
+	margin-left: 4px;
+	height: 42px;
+	width: 42px;
+	border-radius: 38%;
+	border: 1px solid rgba(255, 255, 255, 0.05);
+	padding: 4px;
+}
+.player-name-input-bar .color-picker .color {
+	height: 100%;
+	width: 100%;
+	border-radius: 38%;
+	opacity: 80%;
+}
+.game-config-txt {
+	margin-top: 42px;
+	font-size: 20px;
+	color: var(--secondary);
+	font-weight: 400;
+}
+.truth-and-dare-bar {
+	margin-top: 22px;
+	height: 42px;
+	width: fit-content;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.truth-and-dare-bar .truth,
+.truth-and-dare-bar .dare {
+	height: 42px;
+	width: 110px;
+	border-radius: 16px;
+	border: 1px solid rgba(255, 255, 255, 0.05);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-family: "Poppins";
+	font-size: 12px;
+	font-weight: 400;
+	color: var(--secondary);
+	background-color: var(--primary);
+	transition: 0.1s all;
+}
+.truth-and-dare-bar .truth:active,
+.truth-and-dare-bar .dare:active {
+	scale: 0.93;
+}
+.save-configs-btn {
+	min-height: 48px;
+	margin-top: 40px;
+}
+.player-config-error,
+.game-config-error {
+	margin-top: 6px;
+	font-size: 11px;
+	color: var(--secondary);
+	font-family: "Poppins";
+	font-weight: 400;
+	max-width: 90vw;
+	text-align: center;
+}
+.spill-txt {
+	margin-top: 20px;
+	font-size: 28px;
+	max-width: 75vw;
+	text-align: center;
+	color: var(--secondary);
+	font-weight: 400;
+	font-family: "Sacramento";
+	line-height: 36px;
+}
+.spill-txt span {
+	font-size: 48px;
+	font-family: "Sacramento";
+}
+.spill-tags-cont {
+	margin-top: 80px;
+	height: fit-content;
+	width: 100vw;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 6px;
+}
+.spill-tag {
+	height: 22px;
+	width: fit-content;
+	padding-left: 6px;
+	padding-right: 10px;
+	border-radius: 500px;
+	font-family: "Poppins", sans-serif;
+	font-size: 12px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.current-player-name {
+	font-size: 14px;
+	font-weight: 400;
+	color: var(--secondary);
+}
+.nxt-spill-btn {
+	margin-top: 80px;
+}
+.pass-spill-btn {
+	margin-top: 6px;
+}
+.player-stats-row {
+	margin-top: 10px;
+	height: fit-content;
+	width: 100vw;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.player-stats-col {
+	height: fit-content;
+	width: 52px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+.player-stats-col .player-stats-n {
+	font-size: 18px;
+	font-weight: 600;
+	color: var(--secondary);
+}
+.player-stats-col .player-stats-p {
+	margin-top: -4px;
+	font-size: 10px;
+	font-weight: 400;
+	color: var(--secondary);
+}
+.quit-btn {
+	position: absolute;
+	top: 50px;
+	right: 50px;
+	transition: 0.1s all;
+}
+.quit-btn:active {
+	scale: 0.93;
+}
+.quit-btn i {
+	color: var(--secondary);
+	font-size: 14px;
+}
+.are-all-used {
+	font-size: 10px;
+	font-weight: 400;
+	font-family: "Poppins", sans-serif;
 	color: var(--secondary);
 }

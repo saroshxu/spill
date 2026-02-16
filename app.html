@@ -20,13 +20,126 @@
 
 		<link rel="stylesheet" href="src/assets/css/app.css" />
 	</head>
-	<body>
-		<div class="backlight" style="visibility: hidden">
+	<body
+		onload="
+			autoConfigure();
+			startGame();
+		"
+	>
+		<span style="display: none" id="np-token"></span>
+		<div class="backlight" style="opacity: 100%">
 			<div class="light light-1"></div>
 			<div class="light light-2"></div>
 			<div class="light light-3"></div>
 		</div>
 		<div class="glass"></div>
+		<div class="game" style="display: none">
+			<span id="token-usedIndexes-1" style="display: none"></span>
+			<span id="token-usedIndexes-2" style="display: none"></span>
+			<span id="token-usedIndexes-3" style="display: none"></span>
+			<span id="token-usedIndexes-4" style="display: none"></span>
+			<span id="token-usedIndexes-5" style="display: none"></span>
+			<span id="token-usedIndexes-6" style="display: none"></span>
+			<span id="token-usedIndexes-7" style="display: none"></span>
+			<span id="token-usedIndexes-8" style="display: none"></span>
+			<span id="token-currentPlayer" style="display: none"></span>
+			<span id="token-totalSpills" style="display: none"></span>
+			<span id="token-player1Spills" style="display: none"></span>
+			<span id="token-player2Spills" style="display: none"></span>
+			<span id="token-player3Spills" style="display: none"></span>
+			<span id="token-player4Spills" style="display: none"></span>
+			<span id="token-player5Spills" style="display: none"></span>
+			<span id="token-player6Spills" style="display: none"></span>
+			<span id="token-player7Spills" style="display: none"></span>
+			<span id="token-player8Spills" style="display: none"></span>
+			<span id="token-player1Pass" style="display: none"></span>
+			<span id="token-player2Pass" style="display: none"></span>
+			<span id="token-player3Pass" style="display: none"></span>
+			<span id="token-player4Pass" style="display: none"></span>
+			<span id="token-player5Pass" style="display: none"></span>
+			<span id="token-player6Pass" style="display: none"></span>
+			<span id="token-player7Pass" style="display: none"></span>
+			<span id="token-player8Pass" style="display: none"></span>
+			<div class="quit-btn" onclick="quit()">
+				<i class="fi fi-tc-cross"></i>
+			</div>
+			<span class="current-player-name"></span>
+			<span class="are-all-used" style="display: none"
+				>All truth statments are used up..</span
+			>
+			<div class="player-stats-row">
+				<div class="player-stats-col">
+					<span class="player-stats-n" id="statsTotal">0</span>
+					<span class="player-stats-p">Total Qs</span>
+				</div>
+				<div class="player-stats-col">
+					<span class="player-stats-n" id="statsSpills">0</span>
+					<span class="player-stats-p">Played</span>
+				</div>
+				<div class="player-stats-col">
+					<span class="player-stats-n" id="statsPass">0</span>
+					<span class="player-stats-p">Passed</span>
+				</div>
+			</div>
+
+			<div class="spill-tags-cont">
+				<div
+					class="spill-tag"
+					style="
+						background-color: var(--google-blue-10);
+						color: var(--google-blue);
+						display: none;
+					"
+					id="funnyTag"
+				>
+					😭 Funny
+				</div>
+				<div
+					class="spill-tag"
+					style="
+						background-color: var(--google-red-10);
+						color: var(--google-red);
+						display: none;
+					"
+					id="hotTag"
+				>
+					🔥 Hot
+				</div>
+				<div
+					class="spill-tag"
+					style="
+						background-color: var(--google-yellow-10);
+						color: var(--google-yellow);
+						display: none;
+					"
+					id="spicyTag"
+				>
+					💦 Spicy
+				</div>
+				<div
+					class="spill-tag"
+					style="
+						background-color: var(--google-green-10);
+						color: var(--google-green);
+						display: none;
+					"
+					id="lifeTag"
+				>
+					💚 Life
+				</div>
+			</div>
+			<h1 class="spill-txt"></h1>
+			<button class="primary-btn nxt-spill-btn" onclick="next()">
+				Next
+			</button>
+			<button
+				class="secondary-btn pass-spill-btn"
+				style="background: transparent"
+				onclick="pass()"
+			>
+				Pass
+			</button>
+		</div>
 		<div class="curve-cont">
 			<img src="src/assets/imgs/curve1.png" alt="Curves" class="curve" />
 		</div>
@@ -40,8 +153,15 @@
 				/>
 			</div>
 			<h1 class="app-name">Spill.</h1>
-			<button class="primary-btn start-game-btn">Start Game</button>
-			<button class="secondary-btn settings-game-btn">Game Setup</button>
+			<button class="primary-btn start-game-btn" onclick="startGame()">
+				Start Game
+			</button>
+			<button
+				class="secondary-btn settings-game-btn"
+				onclick="configureGame()"
+			>
+				Options
+			</button>
 			<div class="icons-bar">
 				<div class="menu-ico">
 					<i class="fi fi-tc-settings"></i>
@@ -53,6 +173,186 @@
 					<i class="fi fi-tc-user"></i>
 				</div>
 			</div>
+		</div>
+		<div class="game-opts" style="display: none">
+			<span class="n-player-txt">Players Configuration</span>
+			<span class="player-config-error" style="display: none"></span>
+			<div class="n-players-row n-players-row-1">
+				<div class="n-players-box" onclick="nOfPlayers('1')" id="npb1">
+					1
+				</div>
+				<div class="n-players-box" onclick="nOfPlayers('2')" id="npb2">
+					2
+				</div>
+				<div class="n-players-box" onclick="nOfPlayers('3')" id="npb3">
+					3
+				</div>
+				<div class="n-players-box" onclick="nOfPlayers('4')" id="npb4">
+					4
+				</div>
+			</div>
+			<div class="n-players-row n-players-row-2">
+				<div class="n-players-box" onclick="nOfPlayers('5')" id="npb5">
+					5
+				</div>
+				<div class="n-players-box" onclick="nOfPlayers('6')" id="npb6">
+					6
+				</div>
+				<div class="n-players-box" onclick="nOfPlayers('7')" id="npb7">
+					7
+				</div>
+				<div class="n-players-box" onclick="nOfPlayers('8')" id="npb8">
+					8
+				</div>
+			</div>
+			<div class="player-name-inputs-cont">
+				<div
+					class="player-name-input-bar"
+					id="player1Info"
+					style="margin-top: 0; display: none"
+				>
+					<input
+						type="text"
+						spellcheck="false"
+						autocomplete="off"
+						maxlength="38"
+					/>
+					<span class="color-token" style="display: none"></span>
+					<div class="color-picker" onclick="changeColor('1')">
+						<div class="color"></div>
+					</div>
+				</div>
+				<div
+					class="player-name-input-bar"
+					id="player2Info"
+					style="display: none"
+				>
+					<input
+						type="text"
+						spellcheck="false"
+						autocomplete="off"
+						maxlength="38"
+					/>
+					<span class="color-token" style="display: none"></span>
+					<div class="color-picker" onclick="changeColor('2')">
+						<div class="color"></div>
+					</div>
+				</div>
+				<div
+					class="player-name-input-bar"
+					id="player3Info"
+					style="display: none"
+				>
+					<input
+						type="text"
+						spellcheck="false"
+						autocomplete="off"
+						maxlength="38"
+					/>
+					<span class="color-token" style="display: none"></span>
+					<div class="color-picker" onclick="changeColor('3')">
+						<div class="color"></div>
+					</div>
+				</div>
+				<div
+					class="player-name-input-bar"
+					id="player4Info"
+					style="display: none"
+				>
+					<input
+						type="text"
+						spellcheck="false"
+						autocomplete="off"
+						maxlength="38"
+					/>
+					<span class="color-token" style="display: none"></span>
+					<div class="color-picker" onclick="changeColor('4')">
+						<div class="color"></div>
+					</div>
+				</div>
+				<div
+					class="player-name-input-bar"
+					id="player5Info"
+					style="display: none"
+				>
+					<input
+						type="text"
+						spellcheck="false"
+						autocomplete="off"
+						maxlength="38"
+					/>
+					<span class="color-token" style="display: none"></span>
+					<div class="color-picker" onclick="changeColor('5')">
+						<div class="color"></div>
+					</div>
+				</div>
+				<div
+					class="player-name-input-bar"
+					id="player6Info"
+					style="display: none"
+				>
+					<input
+						type="text"
+						spellcheck="false"
+						autocomplete="off"
+						maxlength="38"
+					/>
+					<span class="color-token" style="display: none"></span>
+					<div class="color-picker" onclick="changeColor('6')">
+						<div class="color"></div>
+					</div>
+				</div>
+				<div
+					class="player-name-input-bar"
+					id="player7Info"
+					style="display: none"
+				>
+					<input
+						type="text"
+						spellcheck="false"
+						autocomplete="off"
+						maxlength="38"
+					/>
+					<span class="color-token" style="display: none"></span>
+					<div class="color-picker" onclick="changeColor('7')">
+						<div class="color"></div>
+					</div>
+				</div>
+				<div
+					class="player-name-input-bar"
+					id="player8Info"
+					style="display: none"
+				>
+					<input
+						type="text"
+						spellcheck="false"
+						autocomplete="off"
+						maxlength="38"
+					/>
+					<span class="color-token" style="display: none"></span>
+					<div class="color-picker" onclick="changeColor('8')">
+						<div class="color"></div>
+					</div>
+				</div>
+			</div>
+			<span class="game-config-txt">Game Configuration</span>
+			<span class="game-config-error" style="display: none"></span>
+			<span class="player-config-error" style="display: none"></span>
+			<div class="truth-and-dare-bar">
+				<span id="isTruthSelected" style="display: none">false</span>
+				<span id="isDareSelected" style="display: none">false</span>
+				<div class="truth" onclick="configSelectTruth()">Truths</div>
+				<div
+					class="dare"
+					style="margin-left: 6px"
+					onclick="configSelectDare()"
+				>
+					Dares
+				</div>
+			</div>
+			<button class="primary-btn save-configs-btn" onclick="saveConfig()">
+				Save
+			</button>
 		</div>
 		<script type="text/javascript" src="src/js/app.js"></script>
 	</body>
