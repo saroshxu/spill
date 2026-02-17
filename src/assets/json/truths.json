@@ -958,5 +958,20 @@
 		"id": 191,
 		"content": "Name the person who knows you most secrets.",
 		"tags": "spicy"
+	},
+	{
+		"id": 192,
+		"content": "Who is the most funny among us?",
+		"tags": "spicy,funny"
+	},
+	{
+		"id": 193,
+		"content": "Copy you crush.",
+		"tags": "funny"
+	},
+	{
+		"id": 195,
+		"content": "Have you ever given funny nicknames to your crush?",
+		"tags": "funny"
 	}
 ]
